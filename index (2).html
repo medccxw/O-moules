@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ô Moules — Restaurant de fruits de mer, La Marsa</title>
+<meta name="description" content="Ô Moules — restaurant de fruits de mer et moules à La Marsa, Tunis. Pâtes, pizzas, grillades et fruits de mer, à deux pas de la plage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    /* primitive colors */
+    --sand:        #EFE3C8;
+    --sand-2:      #E6D6B3;
+    --cream:       #FAF4E6;
+    --terracotta:  #B14622;
+    --terracotta-dk:#8C3618;
+    --olive:       #66713A;
+    --olive-dk:    #4E5A2C;
+    --deepsea:     #17332C;
+    --deepsea-2:   #0F2620;
+    --gold:        #C6953A;
+    --ink:         #2C2116;
+    --white:       #FFFFFF;
+
+    /* semantic */
+    --color-bg: var(--sand);
+    --color-surface: var(--cream);
+    --color-text: var(--ink);
+    --color-text-inverse: var(--sand);
+    --color-primary: var(--terracotta);
+    --color-primary-text: var(--terracotta-dk);
+    --color-secondary: var(--olive);
+    --color-dark: var(--deepsea);
+    --color-accent: var(--gold);
+    --color-border: rgba(44,33,22,0.14);
+
+    /* type */
+    --font-display: 'Fraunces', 'Georgia', serif;
+    --font-body: 'Karla', 'Segoe UI', sans-serif;
+    --font-display-ar: 'El Messiri', 'Tahoma', sans-serif;
+    --font-body-ar: 'Tajawal', 'Tahoma', sans-serif;
+
+    /* space */
+    --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+    --sp-5: 1.5rem; --sp-6: 2rem; --sp-7: 3rem; --sp-8: 4rem;
+    --sp-9: 6rem; --sp-10: 8rem;
+
+    --radius-sm: 6px; --radius-md: 14px; --radius-lg: 28px;
+    --shadow-sm: 0 2px 10px rgba(23,51,44,.08);
+    --shadow-md: 0 12px 32px rgba(23,51,44,.14);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --dur: .3s;
+    --nav-h: 76px;
+  }
+
+  /* ============ RESET / BASE ============ */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top: var(--nav-h); }
+  body{
+    margin:0; background:var(--color-bg); color:var(--color-text);
+    font-family:var(--font-body); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  html:lang(ar) body{ font-family:var(--font-body-ar); }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; margin:0; line-height:1.12; letter-spacing:-.01em; }
+  html:lang(ar) h1, html:lang(ar) h2, html:lang(ar) h3, html:lang(ar) h4{ font-family:var(--font-display-ar); letter-spacing:0; }
+  p{ margin:0; }
+  button{ font-family:inherit; cursor:pointer; }
+  input,select,textarea{ font-family:inherit; font-size:1rem; }
+
+  .container{ max-width:1180px; margin-inline:auto; padding-inline: var(--sp-5); }
+  @media (min-width:768px){ .container{ padding-inline: var(--sp-7); } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.6em;
+    font-family:var(--font-body); font-weight:600; font-size:.78rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--color-primary-text);
+  }
+  html:lang(ar) .eyebrow{ font-family:var(--font-body-ar); letter-spacing:0; text-transform:none; font-size:.85rem; }
+  .eyebrow::before{ content:''; width:22px; height:1.5px; background:currentColor; display:inline-block; }
+
+  .section{ padding-block: var(--sp-9); position:relative; }
+  .section-head{ max-width:640px; margin-bottom: var(--sp-7); }
+  .section-head h2{ font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin-top:.5rem; }
+
+  /* skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--deepsea); color:var(--sand);
+    padding:.8em 1.2em; z-index:1000; border-radius:0 0 var(--radius-sm) 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  :focus-visible{ outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+    padding: .95em 1.9em; border-radius: 999px; font-weight:600; font-size:.95rem;
+    border:1.5px solid transparent; transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), color var(--dur) var(--ease);
+    white-space:nowrap;
+  }
+  .btn:active{ transform: scale(.96); }
+  .btn-primary{ background:var(--color-primary); color:var(--white); box-shadow: var(--shadow-sm); }
+  .btn-primary:hover{ background:var(--terracotta-dk); box-shadow: var(--shadow-md); }
+  .btn-ghost{ background:transparent; border-color: currentColor; color:inherit; }
+  .btn-ghost:hover{ background: rgba(255,255,255,.12); }
+  .btn-dark{ background:var(--deepsea); color:var(--sand); }
+  .btn-dark:hover{ background:var(--deepsea-2); }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed; inset-inline:0; top:0; z-index:500; height:var(--nav-h);
+    display:flex; align-items:center;
+    background: linear-gradient(to bottom, rgba(23,51,44,.55), transparent);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .nav.is-solid{ background:var(--cream); box-shadow: var(--shadow-sm); }
+  .nav-inner{ width:100%; display:flex; align-items:center; justify-content:space-between; gap: var(--sp-5); }
+  .logo{ font-family:var(--font-display); font-weight:600; font-size:1.4rem; letter-spacing:.02em; color:var(--sand); }
+  .nav.is-solid .logo{ color:var(--deepsea); }
+  .nav-links{ display:none; align-items:center; gap: var(--sp-6); }
+  .nav-links a{ font-size:.94rem; font-weight:600; color:var(--sand); position:relative; padding-block:.3em; }
+  html:lang(ar) .nav-links a{ font-weight:500; }
+  .nav.is-solid .nav-links a{ color:var(--ink); }
+  .nav-links a::after{
+    content:''; position:absolute; inset-inline:0; bottom:-2px; height:2px; background:currentColor;
+    transform:scaleX(0); transform-origin: right; transition: transform var(--dur) var(--ease);
+  }
+  html:lang(ar) .nav-links a::after{ transform-origin: left; }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+  .nav-right{ display:flex; align-items:center; gap: var(--sp-4); }
+
+  .lang-switch{ display:flex; gap:2px; background:rgba(255,255,255,.16); padding:3px; border-radius:999px; }
+  .nav.is-solid .lang-switch{ background: rgba(23,51,44,.08); }
+  .lang-switch button{
+    border:none; background:transparent; color:var(--sand); font-size:.72rem; font-weight:700;
+    padding:.4em .7em; border-radius:999px; letter-spacing:.04em; transition: background var(--dur), color var(--dur);
+  }
+  .nav.is-solid .lang-switch button{ color:var(--deepsea); }
+  .lang-switch button[aria-pressed="true"]{ background:var(--gold); color:var(--deepsea-2); }
+
+  .nav-toggle{ display:inline-flex; background:none; border:none; padding:.4em; color:var(--sand); }
+  .nav.is-solid .nav-toggle{ color:var(--deepsea); }
+  .nav-toggle svg{ width:24px; height:24px; }
+
+  @media (min-width:960px){
+    .nav-links{ display:flex; }
+    .nav-toggle{ display:none; }
+  }
+
+  .mobile-panel{
+    position:fixed; inset:0; top:var(--nav-h); background:var(--deepsea); z-index:480;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--sp-6);
+    transform:translateY(-8px); opacity:0; pointer-events:none; transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .mobile-panel.is-open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .mobile-panel a{ color:var(--sand); font-family:var(--font-display); font-size:1.6rem; }
+  html:lang(ar) .mobile-panel a{ font-family:var(--font-display-ar); }
+  @media (min-width:960px){ .mobile-panel{ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; min-height:100svh; display:flex; align-items:center; overflow:hidden;
+    background-image:
+      radial-gradient(circle at 72% 18%, rgba(255,214,153,.55), transparent 42%),
+      linear-gradient(160deg, var(--terracotta) 0%, var(--terracotta-dk) 38%, var(--deepsea) 100%);
+    color:var(--sand);
+  }
+  .hero::before{
+    content:''; position:absolute; inset:-20% -40%; pointer-events:none; opacity:.5;
+    background: repeating-linear-gradient(115deg, rgba(255,236,200,.16) 0px, rgba(255,236,200,.16) 2px, transparent 2px, transparent 46px);
+    mix-blend-mode: overlay;
+    animation: shimmer 16s linear infinite;
+  }
+  @keyframes shimmer{ from{ transform:translate3d(0,0,0);} to{ transform:translate3d(-260px,50px,0);} }
+  .hero-content{ position:relative; z-index:2; padding-top:var(--nav-h); max-width:760px; }
+  .hero .eyebrow{ color:var(--sand); }
+  .hero .eyebrow::before{ background:var(--gold); }
+  .hero h1{
+    font-size: clamp(2.6rem, 6vw, 4.6rem); margin-block:.5em .4em; font-weight:500;
+    text-wrap:balance;
+  }
+  html:lang(ar) .hero h1{ font-weight:700; }
+  .hero-sub{ font-size:1.15rem; max-width:44ch; opacity:.92; margin-bottom: var(--sp-6); }
+  .hero-cta{ display:flex; flex-wrap:wrap; gap: var(--sp-4); }
+  .hero-scroll{
+    position:absolute; bottom: var(--sp-6); inset-inline-start:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:.5em; color:var(--sand); opacity:.85; z-index:2;
+  }
+  html:lang(ar) .hero-scroll{ transform:translateX(50%); }
+  .hero-scroll span{ font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; }
+  .hero-scroll .dot{ width:1px; height:34px; background:currentColor; position:relative; overflow:hidden; }
+  .hero-scroll .dot::after{ content:''; position:absolute; inset-inline:0; top:-100%; height:50%; background:var(--gold); animation: dropline 2.2s var(--ease) infinite; }
+  @keyframes dropline{ 0%{ top:-50%;} 100%{ top:100%;} }
+
+  .wave{ position:absolute; inset-inline:0; bottom:-1px; line-height:0; z-index:2; }
+  .wave svg{ width:100%; height:70px; }
+  @media (min-width:768px){ .wave svg{ height:100px; } }
+
+  /* ============ REVEAL ============ */
+  .reveal{ opacity:0; transform:translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .stagger > *{ transition-delay: calc(var(--i,0) * 70ms); }
+
+  /* ============ STORY ============ */
+  .story{ background:var(--sand); }
+  .story-inner{ display:grid; gap: var(--sp-7); align-items:center; }
+  @media (min-width:860px){ .story-inner{ grid-template-columns: .9fr 1.1fr; } }
+  .story-copy p{ font-size:1.15rem; line-height:1.75; color:var(--color-text); }
+  .story-copy p::first-letter{ font-family:var(--font-display); font-size:2.2em; float:inline-start; line-height:.8; padding-inline-end:.08em; color:var(--terracotta-dk); font-weight:600; }
+  html:lang(ar) .story-copy p::first-letter{ font-family:var(--font-display-ar); float:none; font-size:1em; padding:0; }
+  .story-motif{ color:var(--olive); }
+  .story-motif svg{ width:100%; height:auto; }
+
+  /* ============ MENU ============ */
+  .menu{ background:var(--cream); }
+  .menu-note{ margin-top: var(--sp-7); font-size:.85rem; opacity:.65; font-style:italic; }
+  html:lang(ar) .menu-note{ font-style:normal; }
+  .menu-tabs{ display:flex; flex-wrap:wrap; gap: var(--sp-3); margin-bottom: var(--sp-7); }
+  .menu-tab{
+    padding:.65em 1.3em; border-radius:999px; border:1.5px solid var(--color-border); background:transparent;
+    font-weight:600; font-size:.92rem; color: var(--color-text); transition: all var(--dur) var(--ease);
+  }
+  html:lang(ar) .menu-tab{ font-family:var(--font-body-ar); font-weight:500; }
+  .menu-tab[aria-selected="true"]{ background:var(--deepsea); border-color:var(--deepsea); color:var(--sand); }
+  .menu-category{ display:none; }
+  .menu-category.is-active{ display:block; }
+  .menu-subhead{
+    font-family:var(--font-body); font-weight:700; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--color-primary-text); margin-block: var(--sp-6) var(--sp-2);
+  }
+  .menu-subhead:first-child{ margin-top:0; }
+  html:lang(ar) .menu-subhead{ font-family:var(--font-body-ar); letter-spacing:0; text-transform:none; font-size:.9rem; }
+  .dish{
+    display:grid; grid-template-columns: 1fr auto; gap: var(--sp-2) var(--sp-5); align-items:baseline;
+    padding-block: var(--sp-5); border-bottom:1px solid var(--color-border);
+  }
+  .dish:first-child{ padding-top:0; }
+  .dish-name{ font-family:var(--font-display); font-size:1.2rem; font-weight:600; grid-column:1; }
+  html:lang(ar) .dish-name{ font-family:var(--font-display-ar); }
+  .dish-price{ font-family:var(--font-display); font-weight:600; color:var(--terracotta-dk); font-size:1.1rem; grid-column:2; white-space:nowrap; }
+  .dish-desc{ grid-column:1 / -1; color:var(--color-text); opacity:.78; font-size:.96rem; max-width:56ch; }
+
+  /* ============ GALLERY ============ */
+  .gallery{ background:var(--sand); }
+  .gallery-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap: var(--sp-4); }
+  @media (min-width:700px){ .gallery-grid{ grid-template-columns: repeat(3,1fr); gap: var(--sp-5); } }
+  .g-card{
+    position:relative; aspect-ratio: 4/5; border-radius: var(--radius-md); overflow:hidden;
+    display:flex; align-items:flex-end; padding: var(--sp-4);
+    box-shadow: var(--shadow-sm); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .g-card:hover{ transform:translateY(-6px); box-shadow: var(--shadow-md); }
+  .g-card::before{ content:''; position:absolute; inset:0; opacity:.92; }
+  .g-card:nth-child(1)::before{ background:linear-gradient(150deg,var(--terracotta),var(--terracotta-dk)); }
+  .g-card:nth-child(2)::before{ background:linear-gradient(150deg,var(--olive),var(--olive-dk)); }
+  .g-card:nth-child(3)::before{ background:linear-gradient(150deg,var(--deepsea),var(--deepsea-2)); }
+  .g-card:nth-child(4)::before{ background:linear-gradient(150deg,var(--gold),var(--terracotta-dk)); }
+  .g-card:nth-child(5)::before{ background:linear-gradient(150deg,var(--terracotta-dk),var(--deepsea)); }
+  .g-card:nth-child(6)::before{ background:linear-gradient(150deg,var(--olive-dk),var(--deepsea-2)); }
+  .g-card::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(15,20,10,.55), transparent 55%); }
+  .g-icon{ position:absolute; top: var(--sp-4); inset-inline-end: var(--sp-4); width:30px; height:30px; color:rgba(255,255,255,.85); z-index:2; }
+  .g-caption{ position:relative; z-index:2; color:var(--white); font-family:var(--font-display); font-size:1.05rem; font-weight:500; }
+  html:lang(ar) .g-caption{ font-family:var(--font-display-ar); }
+
+  /* ============ RESERVE ============ */
+  .reserve{ background:var(--deepsea); color:var(--sand); }
+  .reserve .eyebrow{ color:var(--gold); }
+  .reserve .eyebrow::before{ background:var(--gold); }
+  .reserve-inner{ display:grid; gap: var(--sp-8); }
+  @media (min-width:900px){ .reserve-inner{ grid-template-columns: .8fr 1.2fr; } }
+  .reserve-info h2{ color:var(--sand); }
+  .reserve-info p{ opacity:.85; margin-top: var(--sp-4); max-width:40ch; }
+  .info-list{ margin-top: var(--sp-7); display:flex; flex-direction:column; gap: var(--sp-5); }
+  .info-item{ display:flex; gap: var(--sp-3); align-items:flex-start; }
+  .info-item svg{ width:20px; height:20px; flex-shrink:0; margin-top:.2em; color:var(--gold); }
+  .info-item strong{ display:block; font-size:.95rem; }
+  .info-item span{ opacity:.8; font-size:.92rem; }
+
+  .form-card{ background:var(--cream); color:var(--ink); border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-md); }
+  .form-row{ display:grid; gap: var(--sp-5); grid-template-columns:1fr; }
+  @media (min-width:560px){ .form-row.cols-2{ grid-template-columns:1fr 1fr; } .form-row.cols-3{ grid-template-columns:1fr 1fr 1fr; } }
+  .field{ display:flex; flex-direction:column; gap:.5em; margin-bottom: var(--sp-5); }
+  .field label{ font-size:.85rem; font-weight:700; letter-spacing:.02em; }
+  html:lang(ar) .field label{ font-family:var(--font-body-ar); font-weight:600; }
+  .field input, .field select, .field textarea{
+    padding:.85em 1em; border-radius: var(--radius-sm); border:1.5px solid var(--color-border);
+    background:var(--white); color:var(--ink); transition:border-color var(--dur);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--terracotta); }
+  .field textarea{ resize:vertical; min-height:88px; }
+  .form-submit{ width:100%; margin-top: var(--sp-2); }
+  @media (min-width:560px){ .form-submit{ width:auto; } }
+
+  .success-panel{ display:none; text-align:center; padding: var(--sp-8) var(--sp-4); }
+  .success-panel.is-visible{ display:block; }
+  .form-card.is-submitted .form-el{ display:none; }
+  .success-panel svg{ width:52px; height:52px; margin-inline:auto; color:var(--olive-dk); margin-bottom: var(--sp-4); }
+  .success-panel h3{ font-size:1.4rem; margin-bottom:.5em; }
+
+  /* ============ FOOTER ============ */
+  .site-footer{ background:var(--deepsea-2); color:var(--sand); padding-top: var(--sp-8); }
+  .footer-grid{ display:grid; gap: var(--sp-7); padding-bottom: var(--sp-7); }
+  @media (min-width:768px){ .footer-grid{ grid-template-columns: 1.3fr 1fr 1fr; } }
+  .footer-brand .logo{ color:var(--sand); }
+  .footer-brand p{ opacity:.7; margin-top: var(--sp-3); max-width:32ch; font-size:.92rem; }
+  .footer-col h4{ font-family:var(--font-body); font-size:.82rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom: var(--sp-4); font-weight:700; }
+  html:lang(ar) .footer-col h4{ font-family:var(--font-body-ar); letter-spacing:0; text-transform:none; }
+  .footer-col ul{ display:flex; flex-direction:column; gap: var(--sp-3); }
+  .footer-col a, .footer-col span{ opacity:.82; font-size:.94rem; }
+  .footer-col a:hover{ opacity:1; text-decoration:underline; }
+  .social-row{ display:flex; gap: var(--sp-3); margin-top: var(--sp-5); }
+  .social-row a{ width:38px; height:38px; border:1.5px solid rgba(239,227,200,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; transition: background var(--dur), border-color var(--dur); }
+  .social-row a:hover{ background: rgba(239,227,200,.12); border-color: var(--gold); }
+  .social-row svg{ width:17px; height:17px; }
+  .footer-bottom{ border-top:1px solid rgba(239,227,200,.14); padding-block: var(--sp-5); display:flex; flex-wrap:wrap; gap: var(--sp-3); justify-content:space-between; font-size:.82rem; opacity:.65; }
+
+  /* ============ RTL ADJUSTMENTS ============ */
+  [dir="rtl"] .story-inner{ direction:rtl; }
+  [dir="rtl"] .dish{ direction:rtl; }
+  [dir="rtl"] .info-item{ text-align:right; }
+  [dir="rtl"] .hero-cta{ direction:rtl; }
+
+  /* ============ MOTION SAFETY ============ */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero::before{ animation:none; }
+    .hero-scroll .dot::after{ animation:none; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link" data-i18n="skip">Aller au contenu principal</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Ô MOULES</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#home" data-i18n="nav.home">Accueil</a>
+      <a href="#menu" data-i18n="nav.menu">Menu</a>
+      <a href="#gallery" data-i18n="nav.gallery">Galerie</a>
+      <a href="#reserve" data-i18n="nav.reserve">Réserver</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch" role="group" aria-label="Langue / Language / اللغة">
+        <button type="button" data-lang-btn="fr" aria-pressed="true">FR</button>
+        <button type="button" data-lang-btn="ar" aria-pressed="false">ع</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#home" data-i18n="nav.home">Accueil</a>
+  <a href="#menu" data-i18n="nav.menu">Menu</a>
+  <a href="#gallery" data-i18n="nav.gallery">Galerie</a>
+  <a href="#reserve" data-i18n="nav.reserve">Réserver</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Moules & Fruits de Mer · La Marsa</span>
+      <h1 data-i18n="hero.title">Ô Moules, la mer comme on l'aime.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Moules, poissons, pâtes et pizzas, entre mer et bonne humeur, à deux pas de la plage de La Marsa.</p>
+      <div class="hero-cta">
+        <a href="#reserve" class="btn btn-primary" data-i18n="hero.cta1">Réserver une table</a>
+        <a href="#menu" class="btn btn-ghost" data-i18n="hero.cta2">Voir le menu</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span data-i18n="hero.scroll">Découvrir</span>
+      <div class="dot"></div>
+    </div>
+    <div class="wave" style="color:var(--sand)" aria-hidden="true">
+      <svg aria-hidden="true" viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="currentColor" d="M0,40 C240,100 480,0 720,40 C960,80 1200,20 1440,50 L1440,100 L0,100 Z"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section class="section story">
+    <div class="container story-inner">
+      <div class="story-motif reveal" aria-hidden="true">
+        <svg aria-hidden="true" viewBox="0 0 240 240" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M40 140 C40 90 75 55 120 55 C165 55 200 90 200 140" />
+          <path d="M120 55 L120 25" />
+          <path d="M120 25 C105 25 95 35 95 48" />
+          <path d="M120 25 C135 25 145 35 145 48" />
+          <path d="M95 48 C82 48 72 58 72 70" />
+          <path d="M145 48 C158 48 168 58 168 70" />
+          <ellipse cx="120" cy="170" rx="86" ry="10" opacity=".35"/>
+          <path d="M40 140 Q120 172 200 140" />
+        </svg>
+      </div>
+      <div class="story-copy reveal">
+        <span class="eyebrow" data-i18n="story.eyebrow">Notre spécialité</span>
+        <h2 style="margin-top:.6rem; font-size:clamp(1.7rem,3vw,2.2rem);" data-i18n="story.title">Nées dans la marmite, à l'huile d'olive.</h2>
+        <p style="margin-top:1.2rem;" data-i18n="story.body">Ô Moules, c'est avant tout une histoire de moules et de fruits de mer, préparés à l'huile d'olive et au bon fromage, entre recettes italiennes et saveurs locales — à deux pas de la plage de La Marsa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="section menu" id="menu">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="menu.eyebrow">La carte</span>
+        <h2 data-i18n="menu.title">Ce que la mer nous donne</h2>
+      </div>
+
+      <div class="menu-tabs" role="tablist" aria-label="Catégories du menu">
+        <button class="menu-tab" id="tab-entrees" role="tab" aria-selected="true" aria-controls="panel-entrees" data-tab="entrees" data-i18n="menu.tab.entrees">Entrées</button>
+        <button class="menu-tab" id="tab-delmare" role="tab" aria-selected="false" aria-controls="panel-delmare" data-tab="delmare" data-i18n="menu.tab.delmare">Del Mare</button>
+        <button class="menu-tab" id="tab-pates" role="tab" aria-selected="false" aria-controls="panel-pates" data-tab="pates" data-i18n="menu.tab.pates">Pâtes</button>
+        <button class="menu-tab" id="tab-viandes" role="tab" aria-selected="false" aria-controls="panel-viandes" data-tab="viandes" data-i18n="menu.tab.viandes">Viandes</button>
+        <button class="menu-tab" id="tab-riz" role="tab" aria-selected="false" aria-controls="panel-riz" data-tab="riz" data-i18n="menu.tab.riz">Riz</button>
+        <button class="menu-tab" id="tab-pizza" role="tab" aria-selected="false" aria-controls="panel-pizza" data-tab="pizza" data-i18n="menu.tab.pizza">Pizza</button>
+        <button class="menu-tab" id="tab-gaufres" role="tab" aria-selected="false" aria-controls="panel-gaufres" data-tab="gaufres" data-i18n="menu.tab.gaufres">Gaufres</button>
+        <button class="menu-tab" id="tab-crepes" role="tab" aria-selected="false" aria-controls="panel-crepes" data-tab="crepes" data-i18n="menu.tab.crepes">Crêpes</button>
+        <button class="menu-tab" id="tab-milkshakes" role="tab" aria-selected="false" aria-controls="panel-milkshakes" data-tab="milkshakes" data-i18n="menu.tab.milkshakes">Milkshakes</button>
+        <button class="menu-tab" id="tab-boissons" role="tab" aria-selected="false" aria-controls="panel-boissons" data-tab="boissons" data-i18n="menu.tab.boissons">Boissons</button>
+      </div>
+
+      <div class="menu-category is-active" id="panel-entrees" role="tabpanel" aria-labelledby="tab-entrees" tabindex="0" data-category="entrees">
+      <h4 class="menu-subhead" data-i18n="sub.entrees.froides">Froides</h4>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladeverte.name">Salade Verte</span>
+          <span class="dish-price">13 DT</span>
+          <span class="dish-desc" data-i18n="dish.saladeverte.desc">Laitue, concombre, oignon, tomate, roquette, basilic, huile d&#x27;olive.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladecesar.name">Salade César</span>
+          <span class="dish-price">17 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladecaprese.name">Salade Caprese</span>
+          <span class="dish-price">17 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladenoixroquefort.name">Salade au Noix et Roquefort</span>
+          <span class="dish-price">19 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladedunord.name">Salade du Nord</span>
+          <span class="dish-price">18 DT</span>
+          <span class="dish-desc" data-i18n="dish.saladedunord.desc">Laitue, tomates, mozzarella, thon, olives, gruyère.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladepecheur.name">Salade Pêcheur</span>
+          <span class="dish-price">27 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladepoulpe.name">Salade de Poulpe</span>
+          <span class="dish-price">29 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.saladesaumon.name">Salade Saumon</span>
+          <span class="dish-price">29 DT</span>
+        </div>
+      <h4 class="menu-subhead" data-i18n="sub.entrees.chaudes">Chaudes</h4>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.tempura2.name">Tempura</span>
+          <span class="dish-price">19 DT</span>
+          <span class="dish-desc" data-i18n="dish.tempura2.desc">Beignet de crevette.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.calamardore2.name">Calamar Doré</span>
+          <span class="dish-price">19 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.beignetpoulet.name">Beignet de Poulet</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.beignetoignon.name">Beignet d&#x27;Oignon</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.soupelegumes.name">Soupe de Légumes</span>
+          <span class="dish-price">13 DT</span>
+          <span class="dish-desc" data-i18n="dish.soupelegumes.desc">Au poulet.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.soupecrevettes.name">Soupe de Crevettes</span>
+          <span class="dish-price">24 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.brikthon.name">Brik au Thon</span>
+          <span class="dish-price">8 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.brikcrevettes.name">Brik aux Crevettes</span>
+          <span class="dish-price">13 DT</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-delmare" role="tabpanel" aria-labelledby="tab-delmare" tabindex="0" data-category="delmare">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulesmariniereassiette.name">Assiette de Moules Marinière</span>
+          <span class="dish-price">19 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulesmariniereassiette.desc">Avec frites.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulesmarinierecocotte.name">Cocotte de Moules Marinière</span>
+          <span class="dish-price">25 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulesmarinierecocotte.desc">Avec frites.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulestarantinacocotte.name">Cocotte de Moules à la Tarantina</span>
+          <span class="dish-price">25 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulestarantinacocotte.desc">Sauce tomate.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulescremecocotte.name">Cocotte de Moules à la Crème</span>
+          <span class="dish-price">27 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulescremecocotte.desc">Avec frites.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulesgratinees.name">Moules Gratinées</span>
+          <span class="dish-price">27 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulesgratinees.desc">Avec frites.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulescrevettesgratinees.name">Moules et Crevettes Gratinées</span>
+          <span class="dish-price">31 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulescrevettesgratinees.desc">Avec frites.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crevettesgrillees.name">Crevettes Grillées</span>
+          <span class="dish-price">29 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.farandolesdelmare.name">Farandoles del Mare</span>
+          <span class="dish-price">29 DT</span>
+          <span class="dish-desc" data-i18n="dish.farandolesdelmare.desc">Fruits de mer sautés à l&#x27;ail.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crevettesgrilleesmiel.name">Crevettes Grillées au Miel</span>
+          <span class="dish-price">31 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.poissongrille.name">Poisson Grillé</span>
+          <span class="dish-price">35 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.poulpegrille.name">Poulpe Grillé</span>
+          <span class="dish-price">35 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.grilladeroyale.name">Grillade Royale</span>
+          <span class="dish-price">76 DT</span>
+          <span class="dish-desc" data-i18n="dish.grilladeroyale.desc">1 personne.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.grilladeomoules.name">Grillade Ô Moules</span>
+          <span class="dish-price">136 DT</span>
+          <span class="dish-desc" data-i18n="dish.grilladeomoules.desc">2 personnes.</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-pates" role="tabpanel" aria-labelledby="tab-pates" tabindex="0" data-category="pates">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.alpomodoro.name">Al Pomodoro</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.carbonara.name">Carbonara</span>
+          <span class="dish-price">21 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.putanesca.name">Putanesca</span>
+          <span class="dish-price">21 DT</span>
+          <span class="dish-desc" data-i18n="dish.putanesca.desc">Thon, câpres.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.piccata.name">Piccata</span>
+          <span class="dish-price">23 DT</span>
+          <span class="dish-desc" data-i18n="dish.piccata.desc">Au poulet.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.bolognaise.name">Bolognaise</span>
+          <span class="dish-price">25 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.forestiere.name">Forestière</span>
+          <span class="dish-price">23 DT</span>
+          <span class="dish-desc" data-i18n="dish.forestiere.desc">Épinard, poulet.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.alfredo.name">Alfredo</span>
+          <span class="dish-price">23 DT</span>
+          <span class="dish-desc" data-i18n="dish.alfredo.desc">Poulet, fromage, duxelles de champignons.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.lasagne.name">Lasagne</span>
+          <span class="dish-price">25 DT</span>
+          <span class="dish-desc" data-i18n="dish.lasagne.desc">Pâte fraîche, viande hachée.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.lasagnechampignons.name">Lasagne aux Champignons</span>
+          <span class="dish-price">25 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.fromaggi.name">Fromaggi</span>
+          <span class="dish-price">24 DT</span>
+          <span class="dish-desc" data-i18n="dish.fromaggi.desc">Quatre fromages.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.moulespates.name">Moules</span>
+          <span class="dish-price">25 DT</span>
+          <span class="dish-desc" data-i18n="dish.moulespates.desc">À l&#x27;italienne ou sauce rouge.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.mera.name">Mera</span>
+          <span class="dish-price">27 DT</span>
+          <span class="dish-desc" data-i18n="dish.mera.desc">Sauce blanche, épinards et crevettes.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.terreetmer.name">Terre et Mer</span>
+          <span class="dish-price">31 DT</span>
+          <span class="dish-desc" data-i18n="dish.terreetmer.desc">Sauce rosé, moules, crevettes et champignons.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.delmarepates.name">Del Mare</span>
+          <span class="dish-price">33 DT</span>
+          <span class="dish-desc" data-i18n="dish.delmarepates.desc">Fruits de mer.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.ravioli.name">Ravioli del Mare</span>
+          <span class="dish-price">35 DT</span>
+          <span class="dish-desc" data-i18n="dish.ravioli.desc">Fruits de mer fait maison.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.tagliatelle.name">Tagliatelle Saumon Crevette</span>
+          <span class="dish-price">37 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.bravadichef.name">Brava di Chef</span>
+          <span class="dish-price">37 DT</span>
+          <span class="dish-desc" data-i18n="dish.bravadichef.desc">Spaghetti rosé, gambas, seiche, moules.</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-viandes" role="tabpanel" aria-labelledby="tab-viandes" tabindex="0" data-category="viandes">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetboeufgrille.name">Filet de Bœuf Grillé</span>
+          <span class="dish-price">39 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetboeufpoivre.name">Filet de Bœuf Sauce Poivre</span>
+          <span class="dish-price">45 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetboeufcreme.name">Filet de Bœuf à la Crème</span>
+          <span class="dish-price">45 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetboeufchampignons.name">Filet de Bœuf Sauce Champignons</span>
+          <span class="dish-price">45 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetboeufroquefort.name">Filet de Bœuf Sauce Roquefort</span>
+          <span class="dish-price">47 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetveronaise.name">Filet Véronaise</span>
+          <span class="dish-price">47 DT</span>
+          <span class="dish-desc" data-i18n="dish.filetveronaise.desc">Sauce épinard et fromage au four.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.filetpicarde.name">Filet Picarde</span>
+          <span class="dish-price">47 DT</span>
+          <span class="dish-desc" data-i18n="dish.filetpicarde.desc">Duxelles de champignons et fromage.</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-riz" role="tabpanel" aria-labelledby="tab-riz" tabindex="0" data-category="riz">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.rizbiryani.name">Riz Biryani au Poulet</span>
+          <span class="dish-price">23 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.rizsautebeouf.name">Riz Sauté au Filet de Bœuf et Légumes</span>
+          <span class="dish-price">25 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.rizpicarde.name">Riz Picarde</span>
+          <span class="dish-price">27 DT</span>
+          <span class="dish-desc" data-i18n="dish.rizpicarde.desc">Duxelles de champignons et crevettes.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.paellafruitdemer.name">Paella Fruits de Mer</span>
+          <span class="dish-price">31 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.paellacatalane.name">Paella Catalane</span>
+          <span class="dish-price">35 DT</span>
+          <span class="dish-desc" data-i18n="dish.paellacatalane.desc">Moules, crevettes, seiche, chorizo, poulet.</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-pizza" role="tabpanel" aria-labelledby="tab-pizza" tabindex="0" data-category="pizza">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzamargherita.name">Pizza Margherita</span>
+          <span class="dish-price">17 DT</span>
+          <span class="dish-desc" data-i18n="dish.pizzamargherita.desc">Tomates, mozzarella.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzavegetarienne.name">Pizza Végétarienne</span>
+          <span class="dish-price">19 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzaneptune.name">Pizza Neptune</span>
+          <span class="dish-price">19 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzaaltonno.name">Pizza al Tonno</span>
+          <span class="dish-price">21 DT</span>
+          <span class="dish-desc" data-i18n="dish.pizzaaltonno.desc">Sauce blanche, thon.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzareine.name">Pizza Reine</span>
+          <span class="dish-price">23 DT</span>
+          <span class="dish-desc" data-i18n="dish.pizzareine.desc">Champignons, jambon.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzapepperoni.name">Pizza Pepperoni</span>
+          <span class="dish-price">21 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzasoleil.name">Pizza Soleil</span>
+          <span class="dish-price">23 DT</span>
+          <span class="dish-desc" data-i18n="dish.pizzasoleil.desc">Champignons, jambon, œuf.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzapoulet.name">Pizza Poulet</span>
+          <span class="dish-price">23 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzaquatrefromages.name">Pizza Quatre Fromages</span>
+          <span class="dish-price">25 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzaviandehachee.name">Pizza Viande Hachée</span>
+          <span class="dish-price">27 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzamoules.name">Pizza Moules</span>
+          <span class="dish-price">25 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzaterreetmer.name">Pizza Terre et Mer</span>
+          <span class="dish-price">29 DT</span>
+          <span class="dish-desc" data-i18n="dish.pizzaterreetmer.desc">Champignons, crevettes.</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzafruitdemer.name">Pizza Fruits de Mer</span>
+          <span class="dish-price">33 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzasaumon.name">Pizza Saumon</span>
+          <span class="dish-price">33 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.pizzasaumoncrevette.name">Pizza Saumon Crevette</span>
+          <span class="dish-price">37 DT</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-gaufres" role="tabpanel" aria-labelledby="tab-gaufres" tabindex="0" data-category="gaufres">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufresucrecitron.name">Gaufre Sucre Citron</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrechocolatnutella.name">Gaufre Chocolat Nutella</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellanoix.name">Gaufre Nutella Noix</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellabanane.name">Gaufre Nutella Banane</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellabananenoix.name">Gaufre Nutella Banane Noix</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellafruitsaison.name">Gaufre Nutella Fruits de Saison</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellafruitssecs.name">Gaufre Nutella aux Fruits Secs</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellanoisettes.name">Gaufre Nutella aux Noisettes</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.gaufrenutellapistaches.name">Gaufre Nutella aux Pistaches</span>
+          <span class="dish-price">21 DT</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-crepes" role="tabpanel" aria-labelledby="tab-crepes" tabindex="0" data-category="crepes">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepesucrecitron.name">Crêpe Sucre Citron</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepechocolatnutella.name">Crêpe Chocolat Nutella</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellanoix.name">Crêpe Nutella Noix</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellaoreo.name">Crêpe Nutella Oreo</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellabanane.name">Crêpe Nutella Banane</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellanoisettes.name">Crêpe Nutella aux Noisettes</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellaamandes.name">Crêpe Nutella aux Amandes</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellapistaches.name">Crêpe Nutella aux Pistaches</span>
+          <span class="dish-price">21 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.crepenutellafruitssecs.name">Crêpe Nutella aux Fruits Secs</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-milkshakes" role="tabpanel" aria-labelledby="tab-milkshakes" tabindex="0" data-category="milkshakes">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakecvn.name">Milkshake Caramel / Vanille / Noisette</span>
+          <span class="dish-price">12 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakenutella.name">Milkshake Nutella</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakebananenoix.name">Milkshake Banane Noix</span>
+          <span class="dish-price">17 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakeoreo.name">Milkshake Oreo</span>
+          <span class="dish-price">15 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakenutellabanane.name">Milkshake Nutella Banane</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.milkshakenutellaoreo.name">Milkshake Nutella Oreo</span>
+          <span class="dish-price">18 DT</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="panel-boissons" role="tabpanel" aria-labelledby="tab-boissons" tabindex="0" data-category="boissons">
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.boissongazeuse.name">Boisson Gazeuse</span>
+          <span class="dish-price">3.5 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.citronnade.name">Citronnade</span>
+          <span class="dish-price">5 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.citronnadementhe.name">Citronnade Menthe Fraîche</span>
+          <span class="dish-price">6 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.jusorangefrais.name">Jus d&#x27;Orange Frais</span>
+          <span class="dish-price">6 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.citronnadeamandes.name">Citronnade aux Amandes</span>
+          <span class="dish-price">7 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.jusfraise.name">Jus de Fraise</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.cocktailfruitsaison.name">Cocktail Fruits de Saison</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.virginmojito.name">Virgin Mojito</span>
+          <span class="dish-price">11 DT</span>
+        </div>
+        <div class="dish">
+          <span class="dish-name" data-i18n="dish.eau.name">Eau</span>
+          <span class="dish-price">3.5 DT</span>
+        </div>
+      </div>
+
+      <p class="menu-note reveal" data-i18n="menu.note">Prix indicatifs, en dinars tunisiens (DT).</p>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="gallery.eyebrow">Galerie</span>
+        <h2 data-i18n="gallery.title">Un instant de La Marsa</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6Z"/><circle cx="15" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <span class="g-caption" data-i18n="gallery.c1">Le poisson du jour</span>
+        </div>
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17c3-1 5-3 9-3s6 2 9 3M3 12c3-1 5-3 9-3s6 2 9 3"/></svg>
+          <span class="g-caption" data-i18n="gallery.c2">La terrasse, face à la mer</span>
+        </div>
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c2 3 3 5 3 7a3 3 0 1 1-6 0c0-2 1-4 3-7Z"/><path d="M8 21c1-4 2-6 4-6s3 2 4 6"/></svg>
+          <span class="g-caption" data-i18n="gallery.c3">Huile d'olive du Cap Bon</span>
+        </div>
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+          <span class="g-caption" data-i18n="gallery.c4">La grillade Ô Moules</span>
+        </div>
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+          <span class="g-caption" data-i18n="gallery.c5">Coucher de soleil sur La Marsa</span>
+        </div>
+        <div class="g-card reveal">
+          <svg aria-hidden="true" class="g-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M4 21h16"/><path d="M9 21v-6h6v6"/></svg>
+          <span class="g-caption" data-i18n="gallery.c6">En cuisine</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESERVE ============ -->
+  <section class="section reserve" id="reserve">
+    <div class="container reserve-inner">
+      <div class="reserve-info reveal">
+        <span class="eyebrow" data-i18n="reserve.eyebrow">Réservation</span>
+        <h2 data-i18n="reserve.title">Réserver une table</h2>
+        <p data-i18n="reserve.sub">Nous vous répondrons sous 24h pour confirmer votre réservation.</p>
+        <div class="info-list">
+          <div class="info-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <div><strong data-i18n="contact.addr.label">Adresse</strong><span data-i18n="contact.addr.value">11 Rue Mongi Slim, La Marsa 2078, Tunis</span></div>
+          </div>
+          <div class="info-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .6a2 2 0 0 1 1.7 2Z"/></svg>
+            <div><strong data-i18n="contact.phone.label">Téléphone</strong><span>+216 58 320 560</span></div>
+          </div>
+          <div class="info-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div><strong data-i18n="contact.hours.label">Horaires</strong><span data-i18n="contact.hours.value">Ouvert tous les jours, 10h00 – Minuit</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal" id="formCard">
+        <form id="reserveForm" novalidate>
+          <div class="form-el">
+            <div class="form-row cols-2">
+              <div class="field">
+                <label for="rname" data-i18n="form.name">Nom complet</label>
+                <input type="text" id="rname" name="name" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="rphone" data-i18n="form.phone">Téléphone</label>
+                <input type="tel" id="rphone" name="phone" required autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-row cols-3">
+              <div class="field">
+                <label for="rdate" data-i18n="form.date">Date</label>
+                <input type="date" id="rdate" name="date" required>
+              </div>
+              <div class="field">
+                <label for="rtime" data-i18n="form.time">Heure</label>
+                <input type="time" id="rtime" name="time" required>
+              </div>
+              <div class="field">
+                <label for="rguests" data-i18n="form.guests">Personnes</label>
+                <select id="rguests" name="guests" required>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="8+">8+</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="rnotes" data-i18n="form.notes">Remarques (allergies, occasion...)</label>
+              <textarea id="rnotes" name="notes"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" data-i18n="form.submit">Confirmer la réservation</button>
+          </div>
+        </form>
+        <div class="success-panel" id="successPanel">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+          <h3 data-i18n="form.success.title">Merci !</h3>
+          <p data-i18n="form.success.body">Votre demande a bien été reçue. Nous vous contacterons sous 24h pour confirmer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">Ô MOULES</a>
+      <p data-i18n="footer.tagline">Restaurant de moules et fruits de mer à La Marsa, à deux pas de la plage.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/O-Moules-100069895838579/" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h-2a5 5 0 0 0-5 5v2H6v4h2v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.nav">Navigation</h4>
+      <ul>
+        <li><a href="#home" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
+        <li><a href="#reserve" data-i18n="nav.reserve">Réserver</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.infos">Informations</h4>
+      <ul>
+        <li><span data-i18n="contact.addr.value">11 Rue Mongi Slim, La Marsa 2078, Tunis</span></li>
+        <li><span>+216 58 320 560</span></li>
+        <li><span data-i18n="contact.hours.value">Ouvert tous les jours, 10h00 – Minuit</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span data-i18n="footer.copy">© 2026 Ô Moules — Tous droits réservés.</span>
+    <span data-i18n="footer.made">La Marsa, Tunisie</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ TRANSLATIONS ============ */
+  var translations = {
+    fr: {
+      "skip":"Aller au contenu principal",
+      "nav.home":"Accueil",
+      "nav.menu":"Menu",
+      "nav.gallery":"Galerie",
+      "nav.reserve":"Réserver",
+      "nav.contact":"Contact",
+      "hero.eyebrow":"Moules & Fruits de Mer · La Marsa",
+      "hero.title":"Ô Moules, la mer comme on l'aime.",
+      "hero.sub":"Moules, poissons, pâtes et pizzas, entre mer et bonne humeur, à deux pas de la plage de La Marsa.",
+      "hero.cta1":"Réserver une table",
+      "hero.cta2":"Voir le menu",
+      "hero.scroll":"Découvrir",
+      "story.eyebrow":"Notre spécialité",
+      "story.title":"Nées dans la marmite, à l'huile d'olive.",
+      "story.body":"Ô Moules, c'est avant tout une histoire de moules et de fruits de mer, préparés à l'huile d'olive et au bon fromage, entre recettes italiennes et saveurs locales — à deux pas de la plage de La Marsa.",
+      "menu.eyebrow":"La carte",
+      "menu.title":"Ce que la mer nous donne",
+      "gallery.eyebrow":"Galerie",
+      "gallery.title":"Un instant de La Marsa",
+      "gallery.c1":"Le poisson du jour",
+      "gallery.c2":"La terrasse, face à la mer",
+      "gallery.c3":"Huile d'olive du Cap Bon",
+      "gallery.c4":"La grillade Ô Moules",
+      "gallery.c5":"Coucher de soleil sur La Marsa",
+      "gallery.c6":"En cuisine",
+      "reserve.eyebrow":"Réservation",
+      "reserve.title":"Réserver une table",
+      "reserve.sub":"Nous vous répondrons sous 24h pour confirmer votre réservation.",
+      "contact.addr.label":"Adresse",
+      "contact.addr.value":"11 Rue Mongi Slim, La Marsa 2078, Tunis",
+      "contact.phone.label":"Téléphone",
+      "contact.hours.label":"Horaires",
+      "contact.hours.value":"Ouvert tous les jours, 10h00 – Minuit",
+      "form.name":"Nom complet",
+      "form.phone":"Téléphone",
+      "form.date":"Date",
+      "form.time":"Heure",
+      "form.guests":"Personnes",
+      "form.notes":"Remarques (allergies, occasion...)",
+      "form.submit":"Confirmer la réservation",
+      "form.success.title":"Merci !",
+      "form.success.body":"Votre demande a bien été reçue. Nous vous contacterons sous 24h pour confirmer.",
+      "footer.tagline":"Restaurant de moules et fruits de mer à La Marsa, à deux pas de la plage.",
+      "footer.nav":"Navigation",
+      "footer.infos":"Informations",
+      "footer.copy":"© 2026 Ô Moules — Tous droits réservés.",
+      "footer.made":"La Marsa, Tunisie",
+      "menu.tab.entrees":"Entrées",
+      "sub.entrees.froides":"Froides",
+      "sub.entrees.chaudes":"Chaudes",
+      "dish.saladeverte.name":"Salade Verte",
+      "dish.saladeverte.desc":"Laitue, concombre, oignon, tomate, roquette, basilic, huile d'olive.",
+      "dish.saladecesar.name":"Salade César",
+      "dish.saladecaprese.name":"Salade Caprese",
+      "dish.saladenoixroquefort.name":"Salade au Noix et Roquefort",
+      "dish.saladedunord.name":"Salade du Nord",
+      "dish.saladedunord.desc":"Laitue, tomates, mozzarella, thon, olives, gruyère.",
+      "dish.saladepecheur.name":"Salade Pêcheur",
+      "dish.saladepoulpe.name":"Salade de Poulpe",
+      "dish.saladesaumon.name":"Salade Saumon",
+      "dish.tempura2.name":"Tempura",
+      "dish.tempura2.desc":"Beignet de crevette.",
+      "dish.calamardore2.name":"Calamar Doré",
+      "dish.beignetpoulet.name":"Beignet de Poulet",
+      "dish.beignetoignon.name":"Beignet d'Oignon",
+      "dish.soupelegumes.name":"Soupe de Légumes",
+      "dish.soupelegumes.desc":"Au poulet.",
+      "dish.soupecrevettes.name":"Soupe de Crevettes",
+      "dish.brikthon.name":"Brik au Thon",
+      "dish.brikcrevettes.name":"Brik aux Crevettes",
+      "menu.tab.delmare":"Del Mare",
+      "dish.moulesmariniereassiette.name":"Assiette de Moules Marinière",
+      "dish.moulesmariniereassiette.desc":"Avec frites.",
+      "dish.moulesmarinierecocotte.name":"Cocotte de Moules Marinière",
+      "dish.moulesmarinierecocotte.desc":"Avec frites.",
+      "dish.moulestarantinacocotte.name":"Cocotte de Moules à la Tarantina",
+      "dish.moulestarantinacocotte.desc":"Sauce tomate.",
+      "dish.moulescremecocotte.name":"Cocotte de Moules à la Crème",
+      "dish.moulescremecocotte.desc":"Avec frites.",
+      "dish.moulesgratinees.name":"Moules Gratinées",
+      "dish.moulesgratinees.desc":"Avec frites.",
+      "dish.moulescrevettesgratinees.name":"Moules et Crevettes Gratinées",
+      "dish.moulescrevettesgratinees.desc":"Avec frites.",
+      "dish.crevettesgrillees.name":"Crevettes Grillées",
+      "dish.farandolesdelmare.name":"Farandoles del Mare",
+      "dish.farandolesdelmare.desc":"Fruits de mer sautés à l'ail.",
+      "dish.crevettesgrilleesmiel.name":"Crevettes Grillées au Miel",
+      "dish.poissongrille.name":"Poisson Grillé",
+      "dish.poulpegrille.name":"Poulpe Grillé",
+      "dish.grilladeroyale.name":"Grillade Royale",
+      "dish.grilladeroyale.desc":"1 personne.",
+      "dish.grilladeomoules.name":"Grillade Ô Moules",
+      "dish.grilladeomoules.desc":"2 personnes.",
+      "menu.tab.pates":"Pâtes",
+      "dish.alpomodoro.name":"Al Pomodoro",
+      "dish.carbonara.name":"Carbonara",
+      "dish.putanesca.name":"Putanesca",
+      "dish.putanesca.desc":"Thon, câpres.",
+      "dish.piccata.name":"Piccata",
+      "dish.piccata.desc":"Au poulet.",
+      "dish.bolognaise.name":"Bolognaise",
+      "dish.forestiere.name":"Forestière",
+      "dish.forestiere.desc":"Épinard, poulet.",
+      "dish.alfredo.name":"Alfredo",
+      "dish.alfredo.desc":"Poulet, fromage, duxelles de champignons.",
+      "dish.lasagne.name":"Lasagne",
+      "dish.lasagne.desc":"Pâte fraîche, viande hachée.",
+      "dish.lasagnechampignons.name":"Lasagne aux Champignons",
+      "dish.fromaggi.name":"Fromaggi",
+      "dish.fromaggi.desc":"Quatre fromages.",
+      "dish.moulespates.name":"Moules",
+      "dish.moulespates.desc":"À l'italienne ou sauce rouge.",
+      "dish.mera.name":"Mera",
+      "dish.mera.desc":"Sauce blanche, épinards et crevettes.",
+      "dish.terreetmer.name":"Terre et Mer",
+      "dish.terreetmer.desc":"Sauce rosé, moules, crevettes et champignons.",
+      "dish.delmarepates.name":"Del Mare",
+      "dish.delmarepates.desc":"Fruits de mer.",
+      "dish.ravioli.name":"Ravioli del Mare",
+      "dish.ravioli.desc":"Fruits de mer fait maison.",
+      "dish.tagliatelle.name":"Tagliatelle Saumon Crevette",
+      "dish.bravadichef.name":"Brava di Chef",
+      "dish.bravadichef.desc":"Spaghetti rosé, gambas, seiche, moules.",
+      "menu.tab.viandes":"Viandes",
+      "dish.filetboeufgrille.name":"Filet de Bœuf Grillé",
+      "dish.filetboeufpoivre.name":"Filet de Bœuf Sauce Poivre",
+      "dish.filetboeufcreme.name":"Filet de Bœuf à la Crème",
+      "dish.filetboeufchampignons.name":"Filet de Bœuf Sauce Champignons",
+      "dish.filetboeufroquefort.name":"Filet de Bœuf Sauce Roquefort",
+      "dish.filetveronaise.name":"Filet Véronaise",
+      "dish.filetveronaise.desc":"Sauce épinard et fromage au four.",
+      "dish.filetpicarde.name":"Filet Picarde",
+      "dish.filetpicarde.desc":"Duxelles de champignons et fromage.",
+      "menu.tab.riz":"Riz",
+      "dish.rizbiryani.name":"Riz Biryani au Poulet",
+      "dish.rizsautebeouf.name":"Riz Sauté au Filet de Bœuf et Légumes",
+      "dish.rizpicarde.name":"Riz Picarde",
+      "dish.rizpicarde.desc":"Duxelles de champignons et crevettes.",
+      "dish.paellafruitdemer.name":"Paella Fruits de Mer",
+      "dish.paellacatalane.name":"Paella Catalane",
+      "dish.paellacatalane.desc":"Moules, crevettes, seiche, chorizo, poulet.",
+      "menu.tab.pizza":"Pizza",
+      "dish.pizzamargherita.name":"Pizza Margherita",
+      "dish.pizzamargherita.desc":"Tomates, mozzarella.",
+      "dish.pizzavegetarienne.name":"Pizza Végétarienne",
+      "dish.pizzaneptune.name":"Pizza Neptune",
+      "dish.pizzaaltonno.name":"Pizza al Tonno",
+      "dish.pizzaaltonno.desc":"Sauce blanche, thon.",
+      "dish.pizzareine.name":"Pizza Reine",
+      "dish.pizzareine.desc":"Champignons, jambon.",
+      "dish.pizzapepperoni.name":"Pizza Pepperoni",
+      "dish.pizzasoleil.name":"Pizza Soleil",
+      "dish.pizzasoleil.desc":"Champignons, jambon, œuf.",
+      "dish.pizzapoulet.name":"Pizza Poulet",
+      "dish.pizzaquatrefromages.name":"Pizza Quatre Fromages",
+      "dish.pizzaviandehachee.name":"Pizza Viande Hachée",
+      "dish.pizzamoules.name":"Pizza Moules",
+      "dish.pizzaterreetmer.name":"Pizza Terre et Mer",
+      "dish.pizzaterreetmer.desc":"Champignons, crevettes.",
+      "dish.pizzafruitdemer.name":"Pizza Fruits de Mer",
+      "dish.pizzasaumon.name":"Pizza Saumon",
+      "dish.pizzasaumoncrevette.name":"Pizza Saumon Crevette",
+      "menu.tab.gaufres":"Gaufres",
+      "dish.gaufresucrecitron.name":"Gaufre Sucre Citron",
+      "dish.gaufrechocolatnutella.name":"Gaufre Chocolat Nutella",
+      "dish.gaufrenutellanoix.name":"Gaufre Nutella Noix",
+      "dish.gaufrenutellabanane.name":"Gaufre Nutella Banane",
+      "dish.gaufrenutellabananenoix.name":"Gaufre Nutella Banane Noix",
+      "dish.gaufrenutellafruitsaison.name":"Gaufre Nutella Fruits de Saison",
+      "dish.gaufrenutellafruitssecs.name":"Gaufre Nutella aux Fruits Secs",
+      "dish.gaufrenutellanoisettes.name":"Gaufre Nutella aux Noisettes",
+      "dish.gaufrenutellapistaches.name":"Gaufre Nutella aux Pistaches",
+      "menu.tab.crepes":"Crêpes",
+      "dish.crepesucrecitron.name":"Crêpe Sucre Citron",
+      "dish.crepechocolatnutella.name":"Crêpe Chocolat Nutella",
+      "dish.crepenutellanoix.name":"Crêpe Nutella Noix",
+      "dish.crepenutellaoreo.name":"Crêpe Nutella Oreo",
+      "dish.crepenutellabanane.name":"Crêpe Nutella Banane",
+      "dish.crepenutellanoisettes.name":"Crêpe Nutella aux Noisettes",
+      "dish.crepenutellaamandes.name":"Crêpe Nutella aux Amandes",
+      "dish.crepenutellapistaches.name":"Crêpe Nutella aux Pistaches",
+      "dish.crepenutellafruitssecs.name":"Crêpe Nutella aux Fruits Secs",
+      "menu.tab.milkshakes":"Milkshakes",
+      "dish.milkshakecvn.name":"Milkshake Caramel / Vanille / Noisette",
+      "dish.milkshakenutella.name":"Milkshake Nutella",
+      "dish.milkshakebananenoix.name":"Milkshake Banane Noix",
+      "dish.milkshakeoreo.name":"Milkshake Oreo",
+      "dish.milkshakenutellabanane.name":"Milkshake Nutella Banane",
+      "dish.milkshakenutellaoreo.name":"Milkshake Nutella Oreo",
+      "menu.tab.boissons":"Boissons",
+      "dish.boissongazeuse.name":"Boisson Gazeuse",
+      "dish.citronnade.name":"Citronnade",
+      "dish.citronnadementhe.name":"Citronnade Menthe Fraîche",
+      "dish.jusorangefrais.name":"Jus d'Orange Frais",
+      "dish.citronnadeamandes.name":"Citronnade aux Amandes",
+      "dish.jusfraise.name":"Jus de Fraise",
+      "dish.cocktailfruitsaison.name":"Cocktail Fruits de Saison",
+      "dish.virginmojito.name":"Virgin Mojito",
+      "dish.eau.name":"Eau",
+      "menu.note":"Prix indicatifs, en dinars tunisiens (DT)."
+    },
+    en: {
+      "skip":"Skip to main content",
+      "nav.home":"Home",
+      "nav.menu":"Menu",
+      "nav.gallery":"Gallery",
+      "nav.reserve":"Reserve",
+      "nav.contact":"Contact",
+      "hero.eyebrow":"Mussels & Seafood · La Marsa",
+      "hero.title":"Ô Moules — the sea, the way we love it.",
+      "hero.sub":"Mussels, fish, pasta and pizza, between the sea and good company, steps from La Marsa beach.",
+      "hero.cta1":"Reserve a Table",
+      "hero.cta2":"View Menu",
+      "hero.scroll":"Discover",
+      "story.eyebrow":"Our Specialty",
+      "story.title":"Born in the pot, cooked in olive oil.",
+      "story.body":"Ô Moules is, above all, a story about mussels and seafood, cooked in olive oil and good cheese, somewhere between Italian recipes and local flavors — steps from La Marsa beach.",
+      "menu.eyebrow":"The Menu",
+      "menu.title":"What the sea gives us",
+      "gallery.eyebrow":"Gallery",
+      "gallery.title":"A moment in La Marsa",
+      "gallery.c1":"Catch of the Day",
+      "gallery.c2":"The Terrace, Facing the Sea",
+      "gallery.c3":"Cap Bon Olive Oil",
+      "gallery.c4":"The Ô Moules Grill",
+      "gallery.c5":"Sunset over La Marsa",
+      "gallery.c6":"In the Kitchen",
+      "reserve.eyebrow":"Reservation",
+      "reserve.title":"Reserve a Table",
+      "reserve.sub":"We'll get back to you within 24h to confirm your booking.",
+      "contact.addr.label":"Address",
+      "contact.addr.value":"11 Rue Mongi Slim, La Marsa 2078, Tunis",
+      "contact.phone.label":"Phone",
+      "contact.hours.label":"Hours",
+      "contact.hours.value":"Open daily, 10am – Midnight",
+      "form.name":"Full name",
+      "form.phone":"Phone",
+      "form.date":"Date",
+      "form.time":"Time",
+      "form.guests":"Guests",
+      "form.notes":"Notes (allergies, occasion...)",
+      "form.submit":"Confirm Reservation",
+      "form.success.title":"Thank you!",
+      "form.success.body":"Your request has been received. We'll contact you within 24h to confirm.",
+      "footer.tagline":"Mussels and seafood restaurant in La Marsa, steps from the beach.",
+      "footer.nav":"Navigation",
+      "footer.infos":"Information",
+      "footer.copy":"© 2026 Ô Moules — All rights reserved.",
+      "footer.made":"La Marsa, Tunisia",
+      "menu.tab.entrees":"Starters",
+      "sub.entrees.froides":"Cold",
+      "sub.entrees.chaudes":"Hot",
+      "dish.saladeverte.name":"Green Salad",
+      "dish.saladeverte.desc":"Lettuce, cucumber, onion, tomato, arugula, basil, olive oil.",
+      "dish.saladecesar.name":"Caesar Salad",
+      "dish.saladecaprese.name":"Caprese Salad",
+      "dish.saladenoixroquefort.name":"Walnut & Roquefort Salad",
+      "dish.saladedunord.name":"Salade du Nord",
+      "dish.saladedunord.desc":"Lettuce, tomatoes, mozzarella, tuna, olives, gruyère.",
+      "dish.saladepecheur.name":"Fisherman's Salad",
+      "dish.saladepoulpe.name":"Octopus Salad",
+      "dish.saladesaumon.name":"Salmon Salad",
+      "dish.tempura2.name":"Tempura",
+      "dish.tempura2.desc":"Shrimp fritter.",
+      "dish.calamardore2.name":"Golden Calamari",
+      "dish.beignetpoulet.name":"Chicken Fritter",
+      "dish.beignetoignon.name":"Onion Fritter",
+      "dish.soupelegumes.name":"Vegetable Soup",
+      "dish.soupelegumes.desc":"With chicken.",
+      "dish.soupecrevettes.name":"Shrimp Soup",
+      "dish.brikthon.name":"Tuna Brik",
+      "dish.brikcrevettes.name":"Shrimp Brik",
+      "menu.tab.delmare":"Del Mare",
+      "dish.moulesmariniereassiette.name":"Mussels Marinière",
+      "dish.moulesmariniereassiette.desc":"With fries.",
+      "dish.moulesmarinierecocotte.name":"Mussel Pot Marinière",
+      "dish.moulesmarinierecocotte.desc":"With fries.",
+      "dish.moulestarantinacocotte.name":"Mussel Pot Tarantina",
+      "dish.moulestarantinacocotte.desc":"Tomato sauce.",
+      "dish.moulescremecocotte.name":"Mussel Pot in Cream",
+      "dish.moulescremecocotte.desc":"With fries.",
+      "dish.moulesgratinees.name":"Gratin Mussels",
+      "dish.moulesgratinees.desc":"With fries.",
+      "dish.moulescrevettesgratinees.name":"Gratin Mussels & Shrimp",
+      "dish.moulescrevettesgratinees.desc":"With fries.",
+      "dish.crevettesgrillees.name":"Grilled Shrimp",
+      "dish.farandolesdelmare.name":"Farandole del Mare",
+      "dish.farandolesdelmare.desc":"Seafood sautéed with garlic.",
+      "dish.crevettesgrilleesmiel.name":"Honey Grilled Shrimp",
+      "dish.poissongrille.name":"Grilled Fish",
+      "dish.poulpegrille.name":"Grilled Octopus",
+      "dish.grilladeroyale.name":"Royal Grill",
+      "dish.grilladeroyale.desc":"1 person.",
+      "dish.grilladeomoules.name":"Ô Moules Grill",
+      "dish.grilladeomoules.desc":"For 2.",
+      "menu.tab.pates":"Pasta",
+      "dish.alpomodoro.name":"Al Pomodoro",
+      "dish.carbonara.name":"Carbonara",
+      "dish.putanesca.name":"Putanesca",
+      "dish.putanesca.desc":"Tuna, capers.",
+      "dish.piccata.name":"Piccata",
+      "dish.piccata.desc":"With chicken.",
+      "dish.bolognaise.name":"Bolognese",
+      "dish.forestiere.name":"Forestière",
+      "dish.forestiere.desc":"Spinach, chicken.",
+      "dish.alfredo.name":"Alfredo",
+      "dish.alfredo.desc":"Chicken, cheese, mushroom duxelles.",
+      "dish.lasagne.name":"Lasagna",
+      "dish.lasagne.desc":"Fresh pasta, minced meat.",
+      "dish.lasagnechampignons.name":"Mushroom Lasagna",
+      "dish.fromaggi.name":"Fromaggi",
+      "dish.fromaggi.desc":"Four cheeses.",
+      "dish.moulespates.name":"Mussels",
+      "dish.moulespates.desc":"Italian-style or red sauce.",
+      "dish.mera.name":"Mera",
+      "dish.mera.desc":"White sauce, spinach and shrimp.",
+      "dish.terreetmer.name":"Surf & Turf",
+      "dish.terreetmer.desc":"Rosé sauce, mussels, shrimp and mushrooms.",
+      "dish.delmarepates.name":"Del Mare",
+      "dish.delmarepates.desc":"Seafood.",
+      "dish.ravioli.name":"Ravioli del Mare",
+      "dish.ravioli.desc":"Homemade seafood ravioli.",
+      "dish.tagliatelle.name":"Tagliatelle Salmon & Shrimp",
+      "dish.bravadichef.name":"Brava di Chef",
+      "dish.bravadichef.desc":"Rosé spaghetti, prawns, cuttlefish, mussels.",
+      "menu.tab.viandes":"Meats",
+      "dish.filetboeufgrille.name":"Grilled Beef Filet",
+      "dish.filetboeufpoivre.name":"Beef Filet, Pepper Sauce",
+      "dish.filetboeufcreme.name":"Beef Filet in Cream",
+      "dish.filetboeufchampignons.name":"Beef Filet, Mushroom Sauce",
+      "dish.filetboeufroquefort.name":"Beef Filet, Roquefort Sauce",
+      "dish.filetveronaise.name":"Filet Véronaise",
+      "dish.filetveronaise.desc":"Spinach sauce and oven-baked cheese.",
+      "dish.filetpicarde.name":"Filet Picarde",
+      "dish.filetpicarde.desc":"Mushroom duxelles and cheese.",
+      "menu.tab.riz":"Rice",
+      "dish.rizbiryani.name":"Chicken Biryani Rice",
+      "dish.rizsautebeouf.name":"Sautéed Rice, Beef Filet & Vegetables",
+      "dish.rizpicarde.name":"Riz Picarde",
+      "dish.rizpicarde.desc":"Mushroom duxelles and shrimp.",
+      "dish.paellafruitdemer.name":"Seafood Paella",
+      "dish.paellacatalane.name":"Paella Catalane",
+      "dish.paellacatalane.desc":"Mussels, shrimp, cuttlefish, chorizo, chicken.",
+      "menu.tab.pizza":"Pizza",
+      "dish.pizzamargherita.name":"Margherita Pizza",
+      "dish.pizzamargherita.desc":"Tomatoes, mozzarella.",
+      "dish.pizzavegetarienne.name":"Vegetarian Pizza",
+      "dish.pizzaneptune.name":"Neptune Pizza",
+      "dish.pizzaaltonno.name":"Pizza al Tonno",
+      "dish.pizzaaltonno.desc":"White sauce, tuna.",
+      "dish.pizzareine.name":"Pizza Reine",
+      "dish.pizzareine.desc":"Mushrooms, ham.",
+      "dish.pizzapepperoni.name":"Pepperoni Pizza",
+      "dish.pizzasoleil.name":"Pizza Soleil",
+      "dish.pizzasoleil.desc":"Mushrooms, ham, egg.",
+      "dish.pizzapoulet.name":"Chicken Pizza",
+      "dish.pizzaquatrefromages.name":"Four Cheese Pizza",
+      "dish.pizzaviandehachee.name":"Minced Meat Pizza",
+      "dish.pizzamoules.name":"Mussel Pizza",
+      "dish.pizzaterreetmer.name":"Surf & Turf Pizza",
+      "dish.pizzaterreetmer.desc":"Mushrooms, shrimp.",
+      "dish.pizzafruitdemer.name":"Seafood Pizza",
+      "dish.pizzasaumon.name":"Salmon Pizza",
+      "dish.pizzasaumoncrevette.name":"Salmon & Shrimp Pizza",
+      "menu.tab.gaufres":"Waffles",
+      "dish.gaufresucrecitron.name":"Waffle, Sugar & Lemon",
+      "dish.gaufrechocolatnutella.name":"Waffle, Chocolate Nutella",
+      "dish.gaufrenutellanoix.name":"Waffle, Nutella & Walnuts",
+      "dish.gaufrenutellabanane.name":"Waffle, Nutella & Banana",
+      "dish.gaufrenutellabananenoix.name":"Waffle, Nutella, Banana & Walnuts",
+      "dish.gaufrenutellafruitsaison.name":"Waffle, Nutella & Seasonal Fruit",
+      "dish.gaufrenutellafruitssecs.name":"Waffle, Nutella & Dried Fruits",
+      "dish.gaufrenutellanoisettes.name":"Waffle, Nutella & Hazelnuts",
+      "dish.gaufrenutellapistaches.name":"Waffle, Nutella & Pistachios",
+      "menu.tab.crepes":"Crêpes",
+      "dish.crepesucrecitron.name":"Crêpe, Sugar & Lemon",
+      "dish.crepechocolatnutella.name":"Crêpe, Chocolate Nutella",
+      "dish.crepenutellanoix.name":"Crêpe, Nutella & Walnuts",
+      "dish.crepenutellaoreo.name":"Crêpe, Nutella & Oreo",
+      "dish.crepenutellabanane.name":"Crêpe, Nutella & Banana",
+      "dish.crepenutellanoisettes.name":"Crêpe, Nutella & Hazelnuts",
+      "dish.crepenutellaamandes.name":"Crêpe, Nutella & Almonds",
+      "dish.crepenutellapistaches.name":"Crêpe, Nutella & Pistachios",
+      "dish.crepenutellafruitssecs.name":"Crêpe, Nutella & Dried Fruits",
+      "menu.tab.milkshakes":"Milkshakes",
+      "dish.milkshakecvn.name":"Milkshake Caramel / Vanilla / Hazelnut",
+      "dish.milkshakenutella.name":"Nutella Milkshake",
+      "dish.milkshakebananenoix.name":"Banana Walnut Milkshake",
+      "dish.milkshakeoreo.name":"Oreo Milkshake",
+      "dish.milkshakenutellabanane.name":"Nutella Banana Milkshake",
+      "dish.milkshakenutellaoreo.name":"Nutella Oreo Milkshake",
+      "menu.tab.boissons":"Drinks",
+      "dish.boissongazeuse.name":"Soft Drink",
+      "dish.citronnade.name":"Lemonade",
+      "dish.citronnadementhe.name":"Lemonade with Fresh Mint",
+      "dish.jusorangefrais.name":"Fresh Orange Juice",
+      "dish.citronnadeamandes.name":"Almond Lemonade",
+      "dish.jusfraise.name":"Strawberry Juice",
+      "dish.cocktailfruitsaison.name":"Seasonal Fruit Cocktail",
+      "dish.virginmojito.name":"Virgin Mojito",
+      "dish.eau.name":"Water",
+      "menu.note":"Indicative prices, in Tunisian dinars (DT)."
+    },
+    ar: {
+      "skip":"الانتقال إلى المحتوى الرئيسي",
+      "nav.home":"الرئيسية",
+      "nav.menu":"القائمة",
+      "nav.gallery":"المعرض",
+      "nav.reserve":"الحجز",
+      "nav.contact":"اتصل بنا",
+      "hero.eyebrow":"بلح البحر والمأكولات البحرية · المرسى",
+      "hero.title":"أو مول، البحر كما نحب.",
+      "hero.sub":"بلح البحر، السمك، المعكرونة والبيتزا، بين البحر والأجواء الجميلة، على بعد خطوات من شاطئ المرسى.",
+      "hero.cta1":"احجز طاولة",
+      "hero.cta2":"عرض القائمة",
+      "hero.scroll":"اكتشف",
+      "story.eyebrow":"تخصصنا",
+      "story.title":"وُلدت في القدر، طُهيت بزيت الزيتون.",
+      "story.body":"أو مول هو في الأساس قصة بلح البحر والمأكولات البحرية، تُطهى بزيت الزيتون والجبن الجيد، بين الوصفات الإيطالية والنكهات المحلية — على بعد خطوات من شاطئ المرسى.",
+      "menu.eyebrow":"قائمة الطعام",
+      "menu.title":"ما يهديه لنا البحر",
+      "gallery.eyebrow":"المعرض",
+      "gallery.title":"لحظة من المرسى",
+      "gallery.c1":"صيد اليوم",
+      "gallery.c2":"الشرفة، على البحر",
+      "gallery.c3":"زيت زيتون الوطن القبلي",
+      "gallery.c4":"مشاوي أو مول",
+      "gallery.c5":"غروب الشمس على المرسى",
+      "gallery.c6":"في المطبخ",
+      "reserve.eyebrow":"الحجز",
+      "reserve.title":"احجز طاولة",
+      "reserve.sub":"سنتواصل معكم خلال 24 ساعة لتأكيد حجزكم.",
+      "contact.addr.label":"العنوان",
+      "contact.addr.value":"11 نهج المنجي سليم، المرسى 2078، تونس",
+      "contact.phone.label":"الهاتف",
+      "contact.hours.label":"أوقات العمل",
+      "contact.hours.value":"مفتوح يوميًا، من 10:00 صباحًا حتى منتصف الليل",
+      "form.name":"الاسم الكامل",
+      "form.phone":"الهاتف",
+      "form.date":"التاريخ",
+      "form.time":"الوقت",
+      "form.guests":"عدد الأشخاص",
+      "form.notes":"ملاحظات (حساسية، مناسبة...)",
+      "form.submit":"تأكيد الحجز",
+      "form.success.title":"شكرًا لكم!",
+      "form.success.body":"تم استلام طلبكم بنجاح. سنتواصل معكم خلال 24 ساعة للتأكيد.",
+      "footer.tagline":"مطعم بلح البحر والمأكولات البحرية في المرسى، على بعد خطوات من الشاطئ.",
+      "footer.nav":"روابط",
+      "footer.infos":"معلومات",
+      "footer.copy":"© 2026 أو مول — جميع الحقوق محفوظة.",
+      "footer.made":"المرسى، تونس",
+      "menu.tab.entrees":"مقبلات",
+      "sub.entrees.froides":"باردة",
+      "sub.entrees.chaudes":"ساخنة",
+      "dish.saladeverte.name":"سلطة خضراء",
+      "dish.saladeverte.desc":"خس، خيار، بصل، طماطم، جرجير، ريحان، زيت زيتون.",
+      "dish.saladecesar.name":"سلطة سيزار",
+      "dish.saladecaprese.name":"سلطة كابريزي",
+      "dish.saladenoixroquefort.name":"سلطة بالجوز والروكفور",
+      "dish.saladedunord.name":"سلطة الشمال",
+      "dish.saladedunord.desc":"خس، طماطم، موزاريلا، طونة، زيتون، غرويير.",
+      "dish.saladepecheur.name":"سلطة الصياد",
+      "dish.saladepoulpe.name":"سلطة الأخطبوط",
+      "dish.saladesaumon.name":"سلطة السلمون",
+      "dish.tempura2.name":"تمبورا",
+      "dish.tempura2.desc":"عجينة مقلية بالقريدس.",
+      "dish.calamardore2.name":"كالامار ذهبي",
+      "dish.beignetpoulet.name":"عجينة الدجاج المقلية",
+      "dish.beignetoignon.name":"عجينة البصل المقلية",
+      "dish.soupelegumes.name":"شوربة خضار",
+      "dish.soupelegumes.desc":"بالدجاج.",
+      "dish.soupecrevettes.name":"شوربة القريدس",
+      "dish.brikthon.name":"بريك بالطونة",
+      "dish.brikcrevettes.name":"بريك بالقريدس",
+      "menu.tab.delmare":"ديل ماري",
+      "dish.moulesmariniereassiette.name":"طبق بلح البحر مارينيير",
+      "dish.moulesmariniereassiette.desc":"مع البطاطا المقلية.",
+      "dish.moulesmarinierecocotte.name":"قدر بلح البحر مارينيير",
+      "dish.moulesmarinierecocotte.desc":"مع البطاطا المقلية.",
+      "dish.moulestarantinacocotte.name":"قدر بلح البحر تارانتينا",
+      "dish.moulestarantinacocotte.desc":"صلصة طماطم.",
+      "dish.moulescremecocotte.name":"قدر بلح البحر بالقشدة",
+      "dish.moulescremecocotte.desc":"مع البطاطا المقلية.",
+      "dish.moulesgratinees.name":"بلح البحر بالجبن المشوي",
+      "dish.moulesgratinees.desc":"مع البطاطا المقلية.",
+      "dish.moulescrevettesgratinees.name":"بلح البحر والقريدس بالجبن المشوي",
+      "dish.moulescrevettesgratinees.desc":"مع البطاطا المقلية.",
+      "dish.crevettesgrillees.name":"قريدس مشوي",
+      "dish.farandolesdelmare.name":"فاراندول ديل ماري",
+      "dish.farandolesdelmare.desc":"مأكولات بحرية مقلية بالثوم.",
+      "dish.crevettesgrilleesmiel.name":"قريدس مشوي بالعسل",
+      "dish.poissongrille.name":"سمك مشوي",
+      "dish.poulpegrille.name":"أخطبوط مشوي",
+      "dish.grilladeroyale.name":"مشاوي رويال",
+      "dish.grilladeroyale.desc":"لشخص واحد.",
+      "dish.grilladeomoules.name":"مشاوي أو مول",
+      "dish.grilladeomoules.desc":"لشخصين.",
+      "menu.tab.pates":"معكرونة",
+      "dish.alpomodoro.name":"آل بومودورو",
+      "dish.carbonara.name":"كاربونارا",
+      "dish.putanesca.name":"بوتانيسكا",
+      "dish.putanesca.desc":"طونة، كبار.",
+      "dish.piccata.name":"بيكاتا",
+      "dish.piccata.desc":"بالدجاج.",
+      "dish.bolognaise.name":"بولونيز",
+      "dish.forestiere.name":"فوريستيار",
+      "dish.forestiere.desc":"سبانخ، دجاج.",
+      "dish.alfredo.name":"ألفريدو",
+      "dish.alfredo.desc":"دجاج، جبن، فطر مفروم.",
+      "dish.lasagne.name":"لازانيا",
+      "dish.lasagne.desc":"عجين طازج، لحم مفروم.",
+      "dish.lasagnechampignons.name":"لازانيا بالفطر",
+      "dish.fromaggi.name":"فروماجي",
+      "dish.fromaggi.desc":"أربعة أنواع جبن.",
+      "dish.moulespates.name":"بلح البحر",
+      "dish.moulespates.desc":"على الطريقة الإيطالية أو بصلصة حمراء.",
+      "dish.mera.name":"ميرا",
+      "dish.mera.desc":"صلصة بيضاء، سبانخ وقريدس.",
+      "dish.terreetmer.name":"البر والبحر",
+      "dish.terreetmer.desc":"صلصة روزيه، بلح البحر، قريدس وفطر.",
+      "dish.delmarepates.name":"ديل ماري",
+      "dish.delmarepates.desc":"مأكولات بحرية.",
+      "dish.ravioli.name":"رافيولي ديل ماري",
+      "dish.ravioli.desc":"محشو بالمأكولات البحرية، صنع منزلي.",
+      "dish.tagliatelle.name":"تالياتيلي بالسلمون والقريدس",
+      "dish.bravadichef.name":"برافا دي الشيف",
+      "dish.bravadichef.desc":"سباغيتي روزيه، جمبري، حبار، بلح البحر.",
+      "menu.tab.viandes":"لحوم",
+      "dish.filetboeufgrille.name":"فيليه بقر مشوي",
+      "dish.filetboeufpoivre.name":"فيليه بقر بصلصة الفلفل",
+      "dish.filetboeufcreme.name":"فيليه بقر بالقشدة",
+      "dish.filetboeufchampignons.name":"فيليه بقر بصلصة الفطر",
+      "dish.filetboeufroquefort.name":"فيليه بقر بصلصة الروكفور",
+      "dish.filetveronaise.name":"فيليه فيرونيز",
+      "dish.filetveronaise.desc":"صلصة سبانخ وجبن مشوي بالفرن.",
+      "dish.filetpicarde.name":"فيليه بيكارد",
+      "dish.filetpicarde.desc":"فطر مفروم وجبن.",
+      "menu.tab.riz":"أرز",
+      "dish.rizbiryani.name":"أرز برياني بالدجاج",
+      "dish.rizsautebeouf.name":"أرز مقلي بفيليه البقر والخضار",
+      "dish.rizpicarde.name":"أرز بيكارد",
+      "dish.rizpicarde.desc":"فطر مفروم وقريدس.",
+      "dish.paellafruitdemer.name":"بايلا بالمأكولات البحرية",
+      "dish.paellacatalane.name":"بايلا كتالانية",
+      "dish.paellacatalane.desc":"بلح البحر، قريدس، حبار، تشوريزو، دجاج.",
+      "menu.tab.pizza":"بيتزا",
+      "dish.pizzamargherita.name":"بيتزا مارغريتا",
+      "dish.pizzamargherita.desc":"طماطم، موزاريلا.",
+      "dish.pizzavegetarienne.name":"بيتزا نباتية",
+      "dish.pizzaneptune.name":"بيتزا نبتون",
+      "dish.pizzaaltonno.name":"بيتزا آل تونو",
+      "dish.pizzaaltonno.desc":"صلصة بيضاء، طونة.",
+      "dish.pizzareine.name":"بيتزا رين",
+      "dish.pizzareine.desc":"فطر، لحم مقدد.",
+      "dish.pizzapepperoni.name":"بيتزا بيبروني",
+      "dish.pizzasoleil.name":"بيتزا سولاي",
+      "dish.pizzasoleil.desc":"فطر، لحم مقدد، بيض.",
+      "dish.pizzapoulet.name":"بيتزا بالدجاج",
+      "dish.pizzaquatrefromages.name":"بيتزا بأربعة أجبان",
+      "dish.pizzaviandehachee.name":"بيتزا باللحم المفروم",
+      "dish.pizzamoules.name":"بيتزا ببلح البحر",
+      "dish.pizzaterreetmer.name":"بيتزا البر والبحر",
+      "dish.pizzaterreetmer.desc":"فطر، قريدس.",
+      "dish.pizzafruitdemer.name":"بيتزا بالمأكولات البحرية",
+      "dish.pizzasaumon.name":"بيتزا بالسلمون",
+      "dish.pizzasaumoncrevette.name":"بيتزا بالسلمون والقريدس",
+      "menu.tab.gaufres":"وافل",
+      "dish.gaufresucrecitron.name":"وافل بالسكر والليمون",
+      "dish.gaufrechocolatnutella.name":"وافل بالنوتيلا",
+      "dish.gaufrenutellanoix.name":"وافل بالنوتيلا والجوز",
+      "dish.gaufrenutellabanane.name":"وافل بالنوتيلا والموز",
+      "dish.gaufrenutellabananenoix.name":"وافل بالنوتيلا والموز والجوز",
+      "dish.gaufrenutellafruitsaison.name":"وافل بالنوتيلا وفواكه الموسم",
+      "dish.gaufrenutellafruitssecs.name":"وافل بالنوتيلا والفواكه الجافة",
+      "dish.gaufrenutellanoisettes.name":"وافل بالنوتيلا والبندق",
+      "dish.gaufrenutellapistaches.name":"وافل بالنوتيلا والفستق",
+      "menu.tab.crepes":"كريب",
+      "dish.crepesucrecitron.name":"كريب بالسكر والليمون",
+      "dish.crepechocolatnutella.name":"كريب بالنوتيلا",
+      "dish.crepenutellanoix.name":"كريب بالنوتيلا والجوز",
+      "dish.crepenutellaoreo.name":"كريب بالنوتيلا وأوريو",
+      "dish.crepenutellabanane.name":"كريب بالنوتيلا والموز",
+      "dish.crepenutellanoisettes.name":"كريب بالنوتيلا والبندق",
+      "dish.crepenutellaamandes.name":"كريب بالنوتيلا واللوز",
+      "dish.crepenutellapistaches.name":"كريب بالنوتيلا والفستق",
+      "dish.crepenutellafruitssecs.name":"كريب بالنوتيلا والفواكه الجافة",
+      "menu.tab.milkshakes":"ميلك شايك",
+      "dish.milkshakecvn.name":"ميلك شايك كراميل / فانيليا / بندق",
+      "dish.milkshakenutella.name":"ميلك شايك نوتيلا",
+      "dish.milkshakebananenoix.name":"ميلك شايك بالموز والجوز",
+      "dish.milkshakeoreo.name":"ميلك شايك أوريو",
+      "dish.milkshakenutellabanane.name":"ميلك شايك نوتيلا وموز",
+      "dish.milkshakenutellaoreo.name":"ميلك شايك نوتيلا وأوريو",
+      "menu.tab.boissons":"مشروبات",
+      "dish.boissongazeuse.name":"مشروب غازي",
+      "dish.citronnade.name":"عصير ليمون",
+      "dish.citronnadementhe.name":"عصير ليمون بالنعناع الطازج",
+      "dish.jusorangefrais.name":"عصير برتقال طازج",
+      "dish.citronnadeamandes.name":"عصير ليمون باللوز",
+      "dish.jusfraise.name":"عصير فراولة",
+      "dish.cocktailfruitsaison.name":"كوكتيل فواكه الموسم",
+      "dish.virginmojito.name":"فيرجن موخيتو",
+      "dish.eau.name":"ماء",
+      "menu.note":"الأسعار إرشادية، بالدينار التونسي (DT)."
+    }
+  };
+
+  var docTitles = {
+    fr:"Ô Moules — Restaurant de fruits de mer, La Marsa",
+    en:"Ô Moules — Seafood Restaurant, La Marsa",
+    ar:"أو مول — مطعم مأكولات بحرية، المرسى"
+  };
+
+  var currentLang = "fr";
+
+  function applyLang(lang){
+    currentLang = lang;
+    var dict = translations[lang];
+    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+    document.title = docTitles[lang];
+
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var key = el.getAttribute("data-i18n");
+      if(dict[key] !== undefined){ el.textContent = dict[key]; }
+    });
+
+    document.querySelectorAll("[data-lang-btn]").forEach(function(btn){
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-lang-btn") === lang ? "true" : "false");
+    });
+  }
+
+  document.querySelectorAll("[data-lang-btn]").forEach(function(btn){
+    btn.addEventListener("click", function(){ applyLang(btn.getAttribute("data-lang-btn")); });
+  });
+
+  /* ============ NAV SCROLL STATE ============ */
+  var nav = document.getElementById("siteNav");
+  function onScroll(){
+    if(window.scrollY > 60){ nav.classList.add("is-solid"); }
+    else{ nav.classList.remove("is-solid"); }
+  }
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  /* ============ MOBILE NAV ============ */
+  var navToggle = document.getElementById("navToggle");
+  var mobilePanel = document.getElementById("mobilePanel");
+  navToggle.addEventListener("click", function(){
+    var open = mobilePanel.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  mobilePanel.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mobilePanel.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded","false");
+    });
+  });
+
+  /* ============ MENU TABS ============ */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".menu-tab"));
+  function activateTab(tab, focus){
+    tabs.forEach(function(t){ t.setAttribute("aria-selected","false"); t.tabIndex = -1; });
+    tab.setAttribute("aria-selected","true");
+    tab.tabIndex = 0;
+    if(focus){ tab.focus(); }
+    var target = tab.getAttribute("data-tab");
+    document.querySelectorAll(".menu-category").forEach(function(cat){
+      cat.classList.toggle("is-active", cat.getAttribute("data-category") === target);
+    });
+  }
+  tabs.forEach(function(tab, i){
+    tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
+    tab.addEventListener("click", function(){ activateTab(tab, false); });
+    tab.addEventListener("keydown", function(e){
+      var idx = tabs.indexOf(tab);
+      if(e.key === "ArrowRight"){ activateTab(tabs[(idx+1) % tabs.length], true); e.preventDefault(); }
+      else if(e.key === "ArrowLeft"){ activateTab(tabs[(idx-1+tabs.length) % tabs.length], true); e.preventDefault(); }
+      else if(e.key === "Home"){ activateTab(tabs[0], true); e.preventDefault(); }
+      else if(e.key === "End"){ activateTab(tabs[tabs.length-1], true); e.preventDefault(); }
+    });
+  });
+
+  /* ============ SCROLL REVEAL ============ */
+  var revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:"0px 0px -60px 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  /* ============ RESERVATION FORM ============ */
+  var form = document.getElementById("reserveForm");
+  var formCard = document.getElementById("formCard");
+  var successPanel = document.getElementById("successPanel");
+  var dateInput = document.getElementById("rdate");
+  if(dateInput){
+    var today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    formCard.classList.add("is-submitted");
+    successPanel.classList.add("is-visible");
+    successPanel.setAttribute("tabindex","-1");
+    successPanel.focus();
+  });
+
+  /* ============ INIT ============ */
+  applyLang("fr");
+})();
+</script>
+</body>
+</html>
